@@ -7,6 +7,10 @@ do
       assert(unit == 'player')
       return state.class
     end,
+    UnitLevel = function(unit)
+      assert(unit == 'player')
+      return state.level
+    end,
     UnitRace = function(unit)
       assert(unit == 'player')
       return state.race
@@ -34,6 +38,7 @@ do
     {
       state = {
         class = 'Warrior',
+        level = 42,
         race = 'Night Elf',
       },
       url = 'https://classic.wowhead.com/gear-planner/warrior/night-elf/AioCH_8',
@@ -41,6 +46,7 @@ do
     {
       state = {
         class = 'Hunter',
+        level = 42,
         race = 'Dwarf',
       },
       url = 'https://classic.wowhead.com/gear-planner/hunter/dwarf/AioCH_8',
