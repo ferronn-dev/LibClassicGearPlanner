@@ -1,4 +1,20 @@
-_G['strmatch'] = string.match
+do
+  env = {
+    strmatch = string.match,
+    UnitClassBase = function(unit)
+      assert(unit == 'player')
+      return 'Warrior'
+    end,
+    UnitRace = function(unit)
+      assert(unit == 'player')
+      return 'Night Elf'
+    end,
+  }
+  for k, v in pairs(env) do
+    _G[k] = v
+  end
+end
+
 do
   local addonFiles = {
     'libbase64-1-0/LibStub/LibStub.lua',
@@ -11,4 +27,4 @@ do
 end
 
 local lib = _G['LibStub']:GetLibrary('LibClassicGearPlanner')
-assert(lib.GenerateUrl() == 'https://classic.wowhead.com/gear-planner')
+assert(lib.GenerateUrl() == 'https://classic.wowhead.com/gear-planner/night-elf/warrior/rofl')
