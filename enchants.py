@@ -35,6 +35,6 @@ for row in bigquery.Client(project='wow-ferronn-dev').query(
 ):
     print(f'  [{row[0]}] = {{')
     for s in row[1]:
-      print(f'    [{s["effect"]}] = {s["spell"]},')
+        print(f'    [{s["effect"]}] = {s["spell"]},')
     print('  },')
 print('}')
