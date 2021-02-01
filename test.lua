@@ -119,6 +119,37 @@ do
       },
       url = 'https://classic.wowhead.com/gear-planner/paladin/human/AjsIBVAxIFIRX_8BKlECR40DVtoFM3AGR5cHLkEIVwNJO04H9gpHhQtHigxHig1QIA4uK08m0gf1EC6TESSxEleA'
     },
+    {
+      state = {
+        class = 'Druid',
+        inventory = {
+          "|cff0070dd|Hitem:11925::::::::60:::1::::|h[Ghostshroud]|h|r",
+          "|cff0070dd|Hitem:11933::::::::60:::1::::|h[Imperial Jewel]|h|r",
+          "|cff0070dd|Hitem:10783::::::1616:145203584:60:::1::::|h[Atal'ai Spaulders of Defense]|h|r",
+          "|cffffffff|Hitem:2575::::::::60:::11::::|h[Red Linen Shirt]|h|r",
+          "|cff0070dd|Hitem:12793::::::::60:::1::::|h[Mixologist's Tunic]|h|r",
+          "|cff0070dd|Hitem:13252::::::::60:::1::::|h[Cloudrunner Girdle]|h|r",
+          "|cff1eff00|Hitem:15431::::::630:422168192:60:::1::::|h[Peerless Leggings of the Monkey]|h|r",
+          "|cff0070dd|Hitem:11675::::::::60:::1::::|h[Shadefiend Boots]|h|r",
+          "|cff0070dd|Hitem:10800:929:::::610:528211200:60:::1::::|h[Darkwater Bracers of the Monkey]|h|r",
+          "|cff1eff00|Hitem:12114::::::::60:::11::::|h[Nightfall Gloves]|h|r",
+          "|cff0070dd|Hitem:22255::::::::60:::1::::|h[Magma Forged Band]|h|r",
+          "|cff0070dd|Hitem:11669::::::::60:::1::::|h[Naglering]|h|r",
+          "|cff0070dd|Hitem:11810::::::::60:::1::::|h[Force of Will]|h|r",
+          "|cff1eff00|Hitem:17774::::::::60:::11::::|h[Mark of the Chosen]|h|r",
+          "|cff0070dd|Hitem:11626::::::::60:::1::::|h[Blackveil Cape]|h|r",
+          "|cff0070dd|Hitem:11921::::::::60:::1::::|h[Impervious Giant]|h|r",
+        },
+        level = 59,
+        race = 'Night Elf',
+        talents = {
+          {},
+          { 5, 0, 5, 0, 3, 0, 1, 3, 0, 3, 0, 2, 2, 1, 5 },
+          { 5, 5, 5 },
+        },
+      },
+      url = 'https://classic.wowhead.com/gear-planner/druid/night-elf/AjsL9QUDATAwIhX1VfABLpUCLp1DKh8GUAUx-QYzxEc8RwJ2CC2bySowNnkCYgovUgtW7wwtlQ0uIg5Fbg8tahAukQ',
+    },
   }
   for i, test in ipairs(tests) do
     state = test.state
