@@ -1,1 +1,3 @@
 package-as: LibClassicGearPlanner
+ignore:
+- test.lua
