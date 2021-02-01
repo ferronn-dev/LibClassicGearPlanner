@@ -18,7 +18,7 @@ do
       assert(i >= 1 and i <= 3)
       assert(j >= 1 and j <= GetNumTalents(i))
       local c = state.talents[i][j] or 0
-      return nil, nil, nil, nil, nil, c
+      return nil, nil, nil, nil, c
     end,
     strmatch = string.match,
     strsplit = function(sep, s, n)

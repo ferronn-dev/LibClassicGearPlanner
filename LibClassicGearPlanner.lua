@@ -214,9 +214,10 @@ local function getTalentBytes()
   local t = ''
   for i = 1, GetNumTalentTabs() do
     for j = 1, GetNumTalents(i) do
-      t = t .. string.char(select(6, GetTalentInfo(i, j)))
+      local count = select(5, GetTalentInfo(i, j))
+      t = t .. string.char(count)
     end
-    t = t:gsub('\0*$', '\15')
+    t = t:gsub('%z*$', '') .. '\15'
   end
   local r = ''
   for i = 1, t:len(), 2 do
@@ -225,6 +226,10 @@ local function getTalentBytes()
     r = r .. string.char(hi * 16 + lo)
   end
   return r
+end
+
+local function pack16(n)
+  return string.char(math.floor(n / 256)) .. string.char(math.fmod(n, 256))
 end
 
 local function getInventoryBytes()
@@ -238,13 +243,13 @@ local function getInventoryBytes()
         local b = ''
         if ench ~= '' then
           sb = sb + 128
-          b = b .. string.pack('>I2', enchantTable[slot][tonumber(ench)])
+          b = b .. pack16(enchantTable[slot][tonumber(ench)])
         end
         if rand ~= '' then
           sb = sb + 64
-          b = b .. string.pack('>I2', tonumber(rand))
+          b = b .. pack16(tonumber(rand))
         end
-        r = r .. string.pack('>BI2', sb, tonumber(id)) .. b
+        r = r .. string.char(sb) .. pack16(tonumber(id)) .. b
       end
     end
   end
