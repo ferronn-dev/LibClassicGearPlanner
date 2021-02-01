@@ -1,0 +1,3 @@
+[submodule "libbase64-1-0"]
+	path = libbase64-1-0
+	url = https://repos.wowace.com/wow/libbase64-1-0
