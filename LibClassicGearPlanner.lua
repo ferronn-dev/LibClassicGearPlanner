@@ -17,6 +17,25 @@ local function getTalentBytes()
   return r
 end
 
+local function getInventoryBytes()
+  local r = ''
+  for slot = 1, 18 do
+    if slot ~= 4 then
+      local link = GetInventoryItemLink('player', slot)
+      if link then
+        local _, id, _, _, _, _, _, rand = strsplit(':', link)
+        local b = ''
+        if rand then
+          slot = slot + 64
+          b = string.pack('>I2', rand)
+        end
+        r = r .. string.pack('>BI2', slot, tonumber(id)) .. b
+      end
+    end
+  end
+  return r
+end
+
 local function gearPlannerUrl()
   local talentBytes = getTalentBytes()
   return ('https://classic.wowhead.com/gear-planner/'
@@ -28,6 +47,7 @@ local function gearPlannerUrl()
          .. string.char(UnitLevel('player'))
          .. string.char(talentBytes:len())
          .. talentBytes
+         .. getInventoryBytes()
          .. ''):gsub('=', ''):gsub('/', '_'):gsub('+', '-'))
 end
 

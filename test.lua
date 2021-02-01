@@ -2,6 +2,11 @@ local state
 
 do
   env = {
+    GetInventoryItemLink = function(unit, i)
+      assert(unit == 'player')
+      assert(i > 0 and i < 19 and i ~= 4)
+      return state.inventory[i]
+    end,
     GetNumTalentTabs = function()
       return 3
     end,
@@ -15,6 +20,14 @@ do
       return nil, nil, nil, nil, nil, c
     end,
     strmatch = string.match,
+    strsplit = function(sep, s, n)
+      assert(n == nil)
+      local result = {}
+      for w in string.gmatch(s, '([^'..sep..']+)') do
+        table.insert(result, w)
+      end
+      return table.unpack(result)
+    end,
     UnitClassBase = function(unit)
       assert(unit == 'player')
       return state.class
@@ -50,6 +63,7 @@ do
     {
       state = {
         class = 'Warrior',
+        inventory = {},
         level = 42,
         race = 'Night Elf',
         talents = { ['1:1'] = 1 },
@@ -59,6 +73,7 @@ do
     {
       state = {
         class = 'Hunter',
+        inventory = {},
         level = 42,
         race = 'Dwarf',
         talents = { ['1:1'] = 1 },
