@@ -2,6 +2,18 @@ local state
 
 do
   env = {
+    GetNumTalentTabs = function()
+      return 3
+    end,
+    GetNumTalents = function()
+      return 10
+    end,
+    GetTalentInfo = function(i, j)
+      assert(i >= 1 and i <= 3)
+      assert(j >= 1 and j <= 10)
+      local c = state.talents[string.format('%d:%d', i, j)] or 0
+      return nil, nil, nil, nil, nil, c
+    end,
     strmatch = string.match,
     UnitClassBase = function(unit)
       assert(unit == 'player')
@@ -40,6 +52,7 @@ do
         class = 'Warrior',
         level = 42,
         race = 'Night Elf',
+        talents = { ['1:1'] = 1 },
       },
       url = 'https://classic.wowhead.com/gear-planner/warrior/night-elf/AioCH_8',
     },
@@ -48,6 +61,7 @@ do
         class = 'Hunter',
         level = 42,
         race = 'Dwarf',
+        talents = { ['1:1'] = 1 },
       },
       url = 'https://classic.wowhead.com/gear-planner/hunter/dwarf/AioCH_8',
     },
