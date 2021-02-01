@@ -36,14 +36,14 @@ do
         class = 'Warrior',
         race = 'Night Elf',
       },
-      url = 'https://classic.wowhead.com/gear-planner/warrior/night-elf/',
+      url = 'https://classic.wowhead.com/gear-planner/warrior/night-elf/AioCH_8',
     },
     {
       state = {
         class = 'Hunter',
         race = 'Dwarf',
       },
-      url = 'https://classic.wowhead.com/gear-planner/hunter/dwarf/',
+      url = 'https://classic.wowhead.com/gear-planner/hunter/dwarf/AioCH_8',
     },
   }
   for i, test in ipairs(tests) do
