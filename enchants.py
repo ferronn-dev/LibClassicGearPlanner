@@ -5,7 +5,7 @@ for row in bigquery.Client(project='wow-ferronn-dev').query(
     query='''
         SELECT
             slot,
-            ARRAY_AGG(STRUCT(effect, spell))
+            ARRAY_AGG(STRUCT(effect, spell) ORDER BY effect)
         FROM (
             SELECT
                 CAST(e.spellid AS INT64) AS spell,
