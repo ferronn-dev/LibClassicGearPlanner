@@ -25,9 +25,9 @@ local function getInventoryBytes()
       if link then
         local _, id, _, _, _, _, _, rand = strsplit(':', link)
         local b = ''
-        if rand then
+        if rand ~= '' then
           slot = slot + 64
-          b = string.pack('>I2', rand)
+          b = string.pack('>I2', tonumber(rand))
         end
         r = r .. string.pack('>BI2', slot, tonumber(id)) .. b
       end
