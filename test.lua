@@ -1,13 +1,15 @@
+local state
+
 do
   env = {
     strmatch = string.match,
     UnitClassBase = function(unit)
       assert(unit == 'player')
-      return 'Warrior'
+      return state.class
     end,
     UnitRace = function(unit)
       assert(unit == 'player')
-      return 'Night Elf'
+      return state.race
     end,
   }
   for k, v in pairs(env) do
@@ -26,5 +28,28 @@ do
   end
 end
 
-local lib = _G['LibStub']:GetLibrary('LibClassicGearPlanner')
-assert(lib.GenerateUrl() == 'https://classic.wowhead.com/gear-planner/night-elf/warrior/rofl')
+do
+  local lib = _G['LibStub']:GetLibrary('LibClassicGearPlanner')
+  local tests = {
+    {
+      state = {
+        class = 'Warrior',
+        race = 'Night Elf',
+      },
+      url = 'https://classic.wowhead.com/gear-planner/night-elf/warrior/',
+    },
+    {
+      state = {
+        class = 'Hunter',
+        race = 'Dwarf',
+      },
+      url = 'https://classic.wowhead.com/gear-planner/dwarf/hunter/',
+    },
+  }
+  for i, test in ipairs(tests) do
+    state = test.state
+    local want = test.url
+    local got = lib.GenerateUrl()
+    assert(want == got, string.format('test %d, want %s, got %s', i, want, got))
+  end
+end
