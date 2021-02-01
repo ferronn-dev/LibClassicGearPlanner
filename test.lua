@@ -1,7 +1,7 @@
 local state
 
 do
-  env = {
+  local env = {
     GetInventoryItemLink = function(unit, i)
       assert(unit == 'player')
       assert(i > 0 and i < 19 and i ~= 4)
