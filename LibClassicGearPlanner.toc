@@ -1,0 +1,3 @@
+libbase64-1-0/LibStub/LibStub.lua
+libbase64-1-0/lib.xml
+LibClassicGearPlanner.lua
