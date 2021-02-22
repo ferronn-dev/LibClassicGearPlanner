@@ -54,8 +54,8 @@ end
 
 do
   local addonFiles = {
-    'libbase64-1-0/LibStub/LibStub.lua',
-    'libbase64-1-0/LibBase64-1.0.lua',
+    'libs/libbase64-1-0/LibStub/LibStub.lua',
+    'libs/libbase64-1-0/LibBase64-1.0.lua',
     'LibClassicGearPlanner.lua',
   }
   for _, file in ipairs(addonFiles) do
@@ -117,7 +117,8 @@ do
           {},
         },
       },
-      url = 'https://classic.wowhead.com/gear-planner/paladin/human/AjsIBVAxIFIRX_8BKlECR40DVtoFM3AGR5cHLkEIVwNJO04H9gpHhQtHigxHig1QIA4uK08m0gf1EC6TESSxEleA'
+      url = 'https://classic.wowhead.com/gear-planner/paladin/human/' ..
+          'AjsIBVAxIFIRX_8BKlECR40DVtoFM3AGR5cHLkEIVwNJO04H9gpHhQtHigxHig1QIA4uK08m0gf1EC6TESSxEleA'
     },
     {
       state = {
@@ -148,7 +149,8 @@ do
           { 5, 5, 5 },
         },
       },
-      url = 'https://classic.wowhead.com/gear-planner/druid/night-elf/AjsL9QUDATAwIhX1VfABLpUCLp1DKh8GUAUx-QYzxEc8RwJ2CC2bySowNnkCYgovUgtW7wwtlQ0uIg5Fbg8tahAukQ',
+      url = 'https://classic.wowhead.com/gear-planner/druid/night-elf/' ..
+          'AjsL9QUDATAwIhX1VfABLpUCLp1DKh8GUAUx-QYzxEc8RwJ2CC2bySowNnkCYgovUgtW7wwtlQ0uIg5Fbg8tahAukQ',
     },
   }
   for i, test in ipairs(tests) do

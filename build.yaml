@@ -1,0 +1,11 @@
+addon: LibClassicGearPlanner
+deps: {}
+libs:
+  libbase64-1-0: https://repos.wowace.com/wow/libbase64-1-0
+roots:
+- LibClassicGearPlanner.lua
+sql: {}
+toc:
+  Interface: 11306
+  Title: LibClassicGearPlanner
+  Notes: Library for generating WoWHead's classic gear planner URLs.
