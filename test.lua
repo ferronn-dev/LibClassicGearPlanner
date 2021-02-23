@@ -56,10 +56,12 @@ do
   local addonFiles = {
     'libs/libbase64-1-0/LibStub/LibStub.lua',
     'libs/libbase64-1-0/LibBase64-1.0.lua',
+    'enchants.lua',
     'LibClassicGearPlanner.lua',
   }
+  local env = {}
   for _, file in ipairs(addonFiles) do
-    dofile(file)
+    loadfile(file)('moo', env)
   end
 end
 
