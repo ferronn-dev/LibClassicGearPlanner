@@ -2,3 +2,4 @@ enchants.lua
 LibClassicGearPlanner.toc
 LibClassicGearPlanner.zip
 libs/
+.ninja_*
