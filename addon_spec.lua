@@ -1,8 +1,7 @@
-local T = require('testing')
-
-T.RunTests({
-  function(state, _, _, _G)
-    local lib = _G['LibStub']:GetLibrary('LibClassicGearPlanner')
+describe('url generation', function()
+  it('works', function()
+    local state, env = require('addonloader')()
+    local lib = env.LibStub('LibClassicGearPlanner')
     local tests = {
       {
         state = {
@@ -99,7 +98,7 @@ T.RunTests({
       state.talents = test.state.talents
       local want = test.url
       local got = lib.GenerateUrl()
-      T.assertEquals(want, got, i)
+      assert.same(want, got, i)
     end
-  end,
-})
+  end)
+end)
