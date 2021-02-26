@@ -35,8 +35,13 @@ local function getInventoryBytes()
         local sb = slot
         local b = ''
         if ench ~= '' then
-          sb = sb + 128
-          b = b .. pack16(enchantTable[slot][tonumber(ench)])
+          local v = enchantTable[slot][tonumber(ench)]
+          if v ~= nil then
+            sb = sb + 128
+            b = b .. pack16(v)
+          else
+            print('[LibClassicGearPlanner]: failed on slot ' .. slot)
+          end
         end
         if rand ~= '' then
           sb = sb + 64
