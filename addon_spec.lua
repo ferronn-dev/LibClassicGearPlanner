@@ -5,37 +5,38 @@ describe('url generation', function()
     lib = env.LibStub('LibClassicGearPlanner')
   end)
 
-  local function check(data, url)
+  local function prepare(data)
     state.equipment = data.inventory
     state.player.class = data.class
     state.player.level = data.level
     state.player.race = data.race
     state.talents = data.talents
-    assert.same(url, lib.GenerateUrl())
   end
 
   it('works on an empty night elf warrior', function()
-    check({
+    prepare({
       class = 1,
       inventory = {},
       level = 42,
       race = 'Night Elf',
       talents = { { 1 }, {}, {} },
-    }, 'https://classic.wowhead.com/gear-planner/warrior/night-elf/AioCH_8')
+    })
+    assert.same(lib:GenerateUrl(), 'https://classic.wowhead.com/gear-planner/warrior/night-elf/AioCH_8')
   end)
 
   it('works on an empty dwarf hunter', function()
-    check({
+    prepare({
       class = 3,
       inventory = {},
       level = 42,
       race = 'Dwarf',
       talents = { { 1 }, {}, {} },
-    }, 'https://classic.wowhead.com/gear-planner/hunter/dwarf/AioCH_8')
+    })
+    assert.same(lib:GenerateUrl(), 'https://classic.wowhead.com/gear-planner/hunter/dwarf/AioCH_8')
   end)
 
   it('works on a decked out human paladin', function()
-    check({
+    prepare({
       class = 2,
       inventory = {
         "|cff0070dd|Hitem:10833::::::::60:::1::::|h[Horns of Eranikus]|h|r",
@@ -64,12 +65,13 @@ describe('url generation', function()
         {},
         {},
       },
-    }, 'https://classic.wowhead.com/gear-planner/paladin/human/' ..
+    })
+    assert.same(lib:GenerateUrl(), 'https://classic.wowhead.com/gear-planner/paladin/human/' ..
         'AjsIBVAxIFIRX_8BKlECR40DVtoFM3AGR5cHLkEIVwNJO04H9gpHhQtHigxHig1QIA4uK08m0gf1EC6TESSxEleA')
   end)
 
   it('works on a decked out night elf druid', function()
-    check({
+    prepare({
       class = 11,
       inventory = {
         "|cff0070dd|Hitem:11925::::::::60:::1::::|h[Ghostshroud]|h|r",
@@ -96,7 +98,8 @@ describe('url generation', function()
         { 5, 0, 5, 0, 3, 0, 1, 3, 0, 3, 0, 2, 2, 1, 5 },
         { 5, 5, 5 },
       },
-    }, 'https://classic.wowhead.com/gear-planner/druid/night-elf/' ..
+    })
+    assert.same(lib:GenerateUrl(), 'https://classic.wowhead.com/gear-planner/druid/night-elf/' ..
         'AjsL9QUDATAwIhX1VfABLpUCLp1DKh8GUAUx-QYzxEc8RwJ2CC2bySowNnkCYgovUgtW7wwtlQ0uIg5Fbg8tahAukQ')
   end)
 end)
