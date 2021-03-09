@@ -22,6 +22,7 @@ describe('url generation', function()
       talents = { { 1 }, {}, {} },
     })
     assert.same(lib:GenerateUrl(), 'https://classic.wowhead.com/gear-planner/warrior/night-elf/AioCH_8')
+    assert.same(state.printed, '')
   end)
 
   it('works on an empty dwarf hunter', function()
@@ -33,6 +34,7 @@ describe('url generation', function()
       talents = { { 1 }, {}, {} },
     })
     assert.same(lib:GenerateUrl(), 'https://classic.wowhead.com/gear-planner/hunter/dwarf/AioCH_8')
+    assert.same(state.printed, '')
   end)
 
   it('works on a decked out human paladin', function()
@@ -68,6 +70,7 @@ describe('url generation', function()
     })
     assert.same(lib:GenerateUrl(), 'https://classic.wowhead.com/gear-planner/paladin/human/' ..
         'AjsIBVAxIFIRX_8BKlECR40DVtoFM3AGR5cHLkEIVwNJO04H9gpHhQtHigxHig1QIA4uK08m0gf1EC6TESSxEleA')
+    assert.same(state.printed, '')
   end)
 
   it('works on a decked out night elf druid', function()
@@ -101,5 +104,34 @@ describe('url generation', function()
     })
     assert.same(lib:GenerateUrl(), 'https://classic.wowhead.com/gear-planner/druid/night-elf/' ..
         'AjsL9QUDATAwIhX1VfABLpUCLp1DKh8GUAUx-QYzxEc8RwJ2CC2bySowNnkCYgovUgtW7wwtlQ0uIg5Fbg8tahAukQ')
+    assert.same(state.printed, '')
+  end)
+
+  it('is resilient to unknown slots', function()
+    prepare({
+      class = 1,
+      inventory = {
+        [15] = "|cff0070dd|Hitem:11626:929:::::::60:::1::::|h[Blackveil Cape]|h|r",
+      },
+      level = 42,
+      race = 'Night Elf',
+      talents = { { 1 }, {}, {} },
+    })
+    assert.same(lib:GenerateUrl(), 'https://classic.wowhead.com/gear-planner/warrior/night-elf/AioCH_8PLWo')
+    assert.same(state.printed, '[LibClassicGearPlanner]: failed on slot 15\n')
+  end)
+
+  it('is resilient to unknown enchants', function()
+    prepare({
+      class = 1,
+      inventory = {
+        [16] = "|cff0070dd|Hitem:11923:9999:::::::60:::1::::|h[The Hammer of Grace]|h|r",
+      },
+      level = 42,
+      race = 'Night Elf',
+      talents = { { 1 }, {}, {} },
+    })
+    assert.same(lib:GenerateUrl(), 'https://classic.wowhead.com/gear-planner/warrior/night-elf/AioCH_8QLpM')
+    assert.same(state.printed, '[LibClassicGearPlanner]: failed on slot 16\n')
   end)
 end)

@@ -35,7 +35,8 @@ local function getInventoryBytes()
         local sb = slot
         local b = ''
         if ench ~= '' then
-          local v = enchantTable[slot][tonumber(ench)]
+          local st = enchantTable[slot]
+          local v = st and st[tonumber(ench)] or nil
           if v ~= nil then
             sb = sb + 128
             b = b .. pack16(v)
