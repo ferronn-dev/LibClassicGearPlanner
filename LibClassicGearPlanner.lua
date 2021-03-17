@@ -56,6 +56,9 @@ local function getInventoryBytes()
 end
 
 local function gearPlannerUrl()
+  if WOW_PROJECT_ID ~= WOW_PROJECT_CLASSIC then
+    return nil
+  end
   local talentBytes = getTalentBytes()
   return ('https://classic.wowhead.com/gear-planner/'
      .. UnitClassBase('player'):lower()
