@@ -10,6 +10,5 @@ sql:
   enchants.sql:
   - LibClassicGearPlannerEnchantTable
 toc:
-  Interface: 11306
   Title: LibClassicGearPlanner
   Notes: Library for generating WoWHead's classic gear planner URLs.
