@@ -1,16 +1,14 @@
 describe('url generation', function()
-  local state, env, lib
-  before_each(function()
-    state, env = require('addonloader')()
-    lib = env.LibStub('LibClassicGearPlanner')
-  end)
-
   local function prepare(data)
-    state.equipment = data.inventory
-    state.player.class = data.class
-    state.player.level = data.level
-    state.player.race = data.race
-    state.talents = data.talents
+    wow.state.equipment = data.inventory
+    wow.state.player.class = data.class
+    wow.state.player.level = data.level
+    wow.state.player.race = data.race
+    wow.state.talents = data.talents
+  end
+
+  local function liburl()
+    return wow.env.LibStub('LibClassicGearPlanner'):GenerateUrl()
   end
 
   it('works on an empty night elf warrior', function()
@@ -21,8 +19,8 @@ describe('url generation', function()
       race = 'Night Elf',
       talents = { { 1 }, {}, {} },
     })
-    assert.same(lib:GenerateUrl(), 'https://classic.wowhead.com/gear-planner/warrior/night-elf/AioCH_8')
-    assert.same(state.printed, '')
+    assert.same(liburl(), 'https://classic.wowhead.com/gear-planner/warrior/night-elf/AioCH_8')
+    assert.same(wow.state.printed, '')
   end)
 
   it('works on an empty dwarf hunter', function()
@@ -33,8 +31,8 @@ describe('url generation', function()
       race = 'Dwarf',
       talents = { { 1 }, {}, {} },
     })
-    assert.same(lib:GenerateUrl(), 'https://classic.wowhead.com/gear-planner/hunter/dwarf/AioCH_8')
-    assert.same(state.printed, '')
+    assert.same(liburl(), 'https://classic.wowhead.com/gear-planner/hunter/dwarf/AioCH_8')
+    assert.same(wow.state.printed, '')
   end)
 
   it('works on a decked out human paladin', function()
@@ -68,9 +66,9 @@ describe('url generation', function()
         {},
       },
     })
-    assert.same(lib:GenerateUrl(), 'https://classic.wowhead.com/gear-planner/paladin/human/' ..
+    assert.same(liburl(), 'https://classic.wowhead.com/gear-planner/paladin/human/' ..
         'AjsIBVAxIFIRX_8BKlECR40DVtoFM3AGR5cHLkEIVwNJO04H9gpHhQtHigxHig1QIA4uK08m0gf1EC6TESSxEleA')
-    assert.same(state.printed, '')
+    assert.same(wow.state.printed, '')
   end)
 
   it('works on a decked out night elf druid', function()
@@ -102,9 +100,9 @@ describe('url generation', function()
         { 5, 5, 5 },
       },
     })
-    assert.same(lib:GenerateUrl(), 'https://classic.wowhead.com/gear-planner/druid/night-elf/' ..
+    assert.same(liburl(), 'https://classic.wowhead.com/gear-planner/druid/night-elf/' ..
         'AjsL9QUDATAwIhX1VfABLpUCLp1DKh8GUAUx-QYzxEc8RwJ2CC2bySowNnkCYgovUgtW7wwtlQ0uIg5Fbg8tahAukQ')
-    assert.same(state.printed, '')
+    assert.same(wow.state.printed, '')
   end)
 
   it('is resilient to unknown slots', function()
@@ -117,8 +115,8 @@ describe('url generation', function()
       race = 'Night Elf',
       talents = { { 1 }, {}, {} },
     })
-    assert.same(lib:GenerateUrl(), 'https://classic.wowhead.com/gear-planner/warrior/night-elf/AioCH_8PLWo')
-    assert.same(state.printed, '[LibClassicGearPlanner]: failed on slot 15\n')
+    assert.same(liburl(), 'https://classic.wowhead.com/gear-planner/warrior/night-elf/AioCH_8PLWo')
+    assert.same(wow.state.printed, '[LibClassicGearPlanner]: failed on slot 15\n')
   end)
 
   it('is resilient to unknown enchants', function()
@@ -131,7 +129,7 @@ describe('url generation', function()
       race = 'Night Elf',
       talents = { { 1 }, {}, {} },
     })
-    assert.same(lib:GenerateUrl(), 'https://classic.wowhead.com/gear-planner/warrior/night-elf/AioCH_8QLpM')
-    assert.same(state.printed, '[LibClassicGearPlanner]: failed on slot 16\n')
+    assert.same(liburl(), 'https://classic.wowhead.com/gear-planner/warrior/night-elf/AioCH_8QLpM')
+    assert.same(wow.state.printed, '[LibClassicGearPlanner]: failed on slot 16\n')
   end)
 end)
