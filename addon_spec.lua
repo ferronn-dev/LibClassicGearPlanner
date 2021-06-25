@@ -1,4 +1,12 @@
 describe('url generation', function()
+
+  local wow
+  before_each(function()
+    wow = require('addonloader')({
+      toc = 'LibClassicGearPlanner-Classic.toc',
+    })
+  end)
+
   local function prepare(data)
     wow.state.equipment = data.inventory
     wow.state.player.class = data.class
