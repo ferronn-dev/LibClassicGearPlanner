@@ -4,11 +4,12 @@ deps:
   - enchants.lua
 libs:
   libbase64-1-0: https://repos.wowace.com/wow/libbase64-1-0
+libstub:
 roots:
 - LibClassicGearPlanner.lua
 sql:
   enchants.sql:
-  - LibClassicGearPlannerEnchantTable
+  - EnchantDB
 toc:
   Title: LibClassicGearPlanner
   Notes: Library for generating WoWHead's classic gear planner URLs.
