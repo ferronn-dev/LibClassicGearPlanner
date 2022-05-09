@@ -58,17 +58,21 @@ local function gearPlannerUrl()
     return nil
   end
   local talentBytes = getTalentBytes()
-  return ('https://classic.wowhead.com/gear-planner/'
-     .. UnitClassBase('player'):lower()
-     .. '/'
-     .. UnitRace('player'):lower():gsub(' ', '-')
-     .. '/'
-     .. LibBase64.Encode('\002'
-         .. string.char(UnitLevel('player'))
-         .. string.char(talentBytes:len())
-         .. talentBytes
-         .. getInventoryBytes()
-         .. ''):gsub('=', ''):gsub('/', '_'):gsub('+', '-'))
+  return (
+      'https://classic.wowhead.com/gear-planner/'
+      .. UnitClassBase('player'):lower()
+      .. '/'
+      .. UnitRace('player'):lower():gsub(' ', '-')
+      .. '/'
+      .. LibBase64.Encode(
+        '\002'
+          .. string.char(UnitLevel('player'))
+          .. string.char(talentBytes:len())
+          .. talentBytes
+          .. getInventoryBytes()
+          .. ''
+      ):gsub('=', ''):gsub('/', '_'):gsub('+', '-')
+    )
 end
 
 local lib = LibStub:NewLibrary('LibClassicGearPlanner', 1)
